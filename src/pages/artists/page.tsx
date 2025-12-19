@@ -308,45 +308,47 @@ export default function Artists() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Navigation */}
+      
       <nav className="bg-white shadow-sm border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <button 
-              onClick={() => navigate('/dashboard-selection')}
-              className="cursor-pointer"
-            >
-              <img 
+            <div className="flex items-center">
+              <button 
+                onClick={() => navigate('/dashboard-selection')}
+                className="cursor-pointer"
+              >
+               <img 
                   src="https://static.readdy.ai/image/f9554bb0a127440936ab2d922523a178/fc2d4d4044f45bd51bc816181006ac61.png"
                   alt="Media Audition"
                   className="h-10"
                 />
-            </button>
+              </button>
+            </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              <button 
+           
+
+            {/* Desktop Right Side Icons */}
+            <div className="hidden md:flex items-center space-x-4">
+               <button 
                 onClick={() => navigate('/dashboard-selection')}
                 className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium cursor-pointer"
               >
                 Home
               </button>
-              <button 
+                 <button 
                 onClick={() => navigate('/auditions')}
                 className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium cursor-pointer"
               >
                 Find Auditions
               </button>
-              <button 
+               <button 
                 onClick={() => navigate('/shots')}
                 className="text-gray-600 hover:text-teal-600 px-3 py-2 text-sm font-medium cursor-pointer"
               >
                 Shots
               </button>
-            </div>
 
-            {/* Desktop Right Side */}
-            <div className="hidden md:flex items-center space-x-4">
               {/* Notifications */}
               <div className="relative">
                 <button 
@@ -476,108 +478,103 @@ export default function Artists() {
             </div>
 
             {/* Mobile Menu Button */}
-            <button
-              onClick={() => setShowMobileMenu(!showMobileMenu)}
-              className="md:hidden text-gray-600 hover:text-teal-600 p-2 cursor-pointer"
-            >
-              <i className={`${showMobileMenu ? 'ri-close-line' : 'ri-menu-line'} text-2xl`}></i>
-            </button>
+            <div className="md:hidden">
+              <button
+                onClick={() => setShowMobileMenu(!showMobileMenu)}
+                className="text-gray-600 hover:text-teal-600 p-2 cursor-pointer"
+              >
+                <i className={`${showMobileMenu ? 'ri-close-line' : 'ri-menu-line'} text-2xl`}></i>
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu */}
           {showMobileMenu && (
             <div className="md:hidden py-4 border-t border-gray-100">
-              {/* Mobile Profile Section */}
-              <div className="flex items-center space-x-3 px-4 py-3 mb-4 bg-gray-50 rounded-lg">
-                <img 
-                  src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20confident%20young%20artist%20with%20warm%20smile%2C%20studio%20lighting%2C%20neutral%20background%2C%20professional%20makeup%20and%20styling%2C%20contemporary%20portrait%20photography%20style&width=50&height=50&seq=profile001&orientation=squarish"
-                  alt="Profile"
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <p className="font-semibold text-gray-900">Sarah Mitchell</p>
-                  <p className="text-xs text-gray-500">sarah.mitchell@email.com</p>
-                </div>
-              </div>
-
-              {/* Mobile Navigation Links */}
-              <div className="space-y-1">
+              <div className="space-y-2">
                 <button 
                   onClick={() => {
-                    navigate('/dashboard-selection');
+                    navigate('/artists');
                     setShowMobileMenu(false);
                   }}
-                  className="w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer flex items-center"
+                  className="w-full text-left px-4 py-3 text-gray-600 hover:text-teal-600 hover:bg-gray-50 rounded-lg cursor-pointer"
                 >
-                  <i className="ri-home-line mr-3 text-gray-500 w-5 h-5 flex items-center justify-center"></i>
-                  Home
-                </button>
-                <button 
-                  onClick={() => {
-                    navigate('/auditions');
-                    setShowMobileMenu(false);
-                  }}
-                  className="w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer flex items-center"
-                >
-                  <i className="ri-search-line mr-3 text-gray-500 w-5 h-5 flex items-center justify-center"></i>
-                  Find Auditions
+                  Find Artists
                 </button>
                 <button 
                   onClick={() => {
                     navigate('/shots');
                     setShowMobileMenu(false);
                   }}
-                  className="w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer flex items-center"
+                  className="w-full text-left px-4 py-3 text-gray-600 hover:text-teal-600 hover:bg-gray-50 rounded-lg cursor-pointer"
                 >
-                  <i className="ri-video-line mr-3 text-gray-500 w-5 h-5 flex items-center justify-center"></i>
                   Shots
                 </button>
                 
-                {/* Mobile Notifications */}
-                <button 
-                  onClick={() => setShowNotifications(!showNotifications)}
-                  className="w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer flex items-center justify-between"
-                >
-                  <div className="flex items-center">
-                    <i className="ri-notification-3-line mr-3 text-gray-500 w-5 h-5 flex items-center justify-center"></i>
-                    Notifications
+                {/* Mobile Profile Section */}
+                <div className="border-t border-gray-100 pt-4 mt-4">
+                  <div className="flex items-center px-4 py-3 mb-2">
+                    <img 
+                      src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20confident%20young%20artist%20with%20warm%20smile%2C%20studio%20lighting%2C%20neutral%20background%2C%20professional%20makeup%20and%20styling%2C%20contemporary%20portrait%20photography%20style&width=40&height=40&seq=profile001&orientation=squarish"
+                      alt="Profile"
+                      className="w-10 h-10 rounded-full object-cover border-2 border-gray-200"
+                    />
+                    <div className="ml-3">
+                      <p className="font-semibold text-gray-900">Sarah Mitchell</p>
+                      <p className="text-xs text-gray-500">sarah.mitchell@email.com</p>
+                    </div>
                   </div>
-                  <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-                </button>
-                
-                {/* Mobile Messages */}
-                <button 
-                  onClick={() => setShowMessages(!showMessages)}
-                  className="w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer flex items-center justify-between"
-                >
-                  <div className="flex items-center">
-                    <i className="ri-message-3-line mr-3 text-gray-500 w-5 h-5 flex items-center justify-center"></i>
-                    Messages
-                  </div>
-                  <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-                </button>
-
-                <button 
-                  onClick={() => {
-                    navigate('/artist/1');
-                    setShowMobileMenu(false);
-                  }}
-                  className="w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer flex items-center"
-                >
-                  <i className="ri-user-line mr-3 text-gray-500 w-5 h-5 flex items-center justify-center"></i>
-                  View Profile
-                </button>
-                
-                <button 
-                  onClick={() => {
-                    navigate('/');
-                    setShowMobileMenu(false);
-                  }}
-                  className="w-full text-left px-4 py-3 text-red-600 hover:bg-red-50 transition-colors cursor-pointer flex items-center"
-                >
-                  <i className="ri-logout-box-line mr-3 text-red-600 w-5 h-5 flex items-center justify-center"></i>
-                  Logout
-                </button>
+                  
+                  <button 
+                    onClick={() => {
+                      navigate('/artist/1');
+                      setShowMobileMenu(false);
+                    }}
+                    className="w-full text-left px-4 py-3 text-gray-600 hover:text-teal-600 hover:bg-gray-50 rounded-lg cursor-pointer flex items-center"
+                  >
+                    <i className="ri-user-line mr-3 w-5 h-5 flex items-center justify-center"></i>
+                    View Profile
+                  </button>
+                  
+                  <button 
+                    onClick={() => {
+                      setShowMobileMenu(false);
+                      setShowNotifications(!showNotifications);
+                    }}
+                    className="w-full text-left px-4 py-3 text-gray-600 hover:text-teal-600 hover:bg-gray-50 rounded-lg cursor-pointer flex items-center justify-between"
+                  >
+                    <div className="flex items-center">
+                      <i className="ri-notification-3-line mr-3 w-5 h-5 flex items-center justify-center"></i>
+                      Notifications
+                    </div>
+                    <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                  </button>
+                  
+                  <button 
+                    onClick={() => {
+                      setShowMobileMenu(false);
+                      setShowMessages(!showMessages);
+                    }}
+                    className="w-full text-left px-4 py-3 text-gray-600 hover:text-teal-600 hover:bg-gray-50 rounded-lg cursor-pointer flex items-center justify-between"
+                  >
+                    <div className="flex items-center">
+                      <i className="ri-message-3-line mr-3 w-5 h-5 flex items-center justify-center"></i>
+                      Messages
+                    </div>
+                    <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                  </button>
+                  
+                  <button 
+                    onClick={() => {
+                      setShowMobileMenu(false);
+                      navigate('/');
+                    }}
+                    className="w-full text-left px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg cursor-pointer flex items-center"
+                  >
+                    <i className="ri-logout-box-line mr-3 w-5 h-5 flex items-center justify-center"></i>
+                    Logout
+                  </button>
+                </div>
               </div>
             </div>
           )}
