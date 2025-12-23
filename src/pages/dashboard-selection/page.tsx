@@ -68,13 +68,152 @@ export default function DashboardSelection() {
               />
             </button>
             
-            <button 
-              onClick={() => navigate('/')}
-              className="text-white hover:text-teal-400 transition-colors cursor-pointer"
-            >
-              <i className="ri-logout-box-r-line text-xl mr-2"></i>
-              Logout
-            </button>
+             {/* Desktop Right Side */}
+            <div className="hidden md:flex items-center space-x-4">
+              <button 
+                onClick={() => navigate('/dashboard-selection')}
+                className="text-white hover:text-teal-600 px-3 py-2 text-sm font-medium cursor-pointer"
+              >
+                Home
+              </button>
+              <button 
+                onClick={() => navigate('/auditions')}
+                className="text-white hover:text-teal-600 px-3 py-2 text-sm font-medium cursor-pointer"
+              >
+                Find Auditions
+              </button>
+              <button 
+                onClick={() => navigate('/artists')}
+                className="text-white hover:text-teal-600 px-3 py-2 text-sm font-medium cursor-pointer"
+              >
+                Find Artist
+              </button>
+              <button 
+                onClick={() => navigate('/shots')}
+                className="text-white hover:text-teal-600 px-3 py-2 text-sm font-medium cursor-pointer"
+              >
+                Shots
+              </button>
+              {/* Notifications */}
+              <div className="relative">
+                <button 
+                  onClick={() => {
+                    setShowNotifications(!showNotifications);
+                    setShowMessages(false);
+                    setShowProfileMenu(false);
+                  }}
+                  className="relative text-gray-600 hover:text-teal-600 p-2 cursor-pointer w-10 h-10 flex items-center justify-center"
+                >
+                  <i className="ri-notification-3-line text-xl"></i>
+                  <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                
+                {showNotifications && (
+                  <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg overflow-hidden z-50">
+                    <div className="p-4 border-b border-gray-100">
+                      <h3 className="font-semibold text-gray-900">Notifications</h3>
+                    </div>
+                    <div className="max-h-96 overflow-y-auto">
+                      {notifications.map((notif) => (
+                        <div key={notif.id} className={`p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${notif.unread ? 'bg-teal-50' : ''}`}>
+                          <p className="text-sm text-gray-900">{notif.message}</p>
+                          <p className="text-xs text-gray-500 mt-1">{notif.time}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="p-3 text-center border-t border-gray-100">
+                      <button className="text-sm text-teal-600 hover:text-teal-700 cursor-pointer">View All</button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Messages */}
+              <div className="relative">
+                <button 
+                  onClick={() => {
+                    setShowMessages(!showMessages);
+                    setShowNotifications(false);
+                    setShowProfileMenu(false);
+                  }}
+                  className="relative text-gray-600 hover:text-teal-600 p-2 cursor-pointer w-10 h-10 flex items-center justify-center"
+                >
+                  <i className="ri-message-3-line text-xl"></i>
+                  <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                
+                {showMessages && (
+                  <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg overflow-hidden z-50">
+                    <div className="p-4 border-b border-gray-100">
+                      <h3 className="font-semibold text-gray-900">Messages</h3>
+                    </div>
+                    <div className="max-h-96 overflow-y-auto">
+                      {messages.map((msg) => (
+                        <div key={msg.id} className={`p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${msg.unread ? 'bg-teal-50' : ''}`}>
+                          <p className="text-sm font-medium text-gray-900">{msg.sender}</p>
+                          <p className="text-sm text-gray-600 mt-1">{msg.message}</p>
+                          <p className="text-xs text-gray-500 mt-1">{msg.time}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="p-3 text-center border-t border-gray-100">
+                      <button className="text-sm text-teal-600 hover:text-teal-700 cursor-pointer">View All Messages</button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Profile Menu */}
+              <div className="relative">
+                <button 
+                  onClick={() => {
+                    setShowProfileMenu(!showProfileMenu);
+                    setShowNotifications(false);
+                    setShowMessages(false);
+                  }}
+                  className="flex items-center space-x-2 cursor-pointer"
+                >
+                  <img 
+                    src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20confident%20young%20artist%20with%20warm%20smile%2C%20studio%20lighting%2C%20neutral%20background%2C%20professional%20makeup%20and%20styling%2C%20contemporary%20portrait%20photography%20style&width=40&height=40&seq=profile001&orientation=squarish"
+                    alt="Profile"
+                    className="w-10 h-10 rounded-full object-cover border-2 border-gray-200 hover:border-teal-600 transition-colors"
+                  />
+                </button>
+                
+                {showProfileMenu && (
+                  <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg overflow-hidden z-50">
+                    <div className="p-4 border-b border-gray-100">
+                      <div className="flex items-center space-x-3">
+                        <img 
+                          src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20confident%20young%20artist%20with%20warm%20smile%2C%20studio%20lighting%2C%20neutral%20background%2C%20professional%20makeup%20and%20styling%2C%20contemporary%20portrait%20photography%20style&width=50&height=50&seq=profile001&orientation=squarish"
+                          alt="Profile"
+                          className="w-12 h-12 rounded-full object-cover"
+                        />
+                        <div>
+                          <p className="font-semibold text-gray-900">Sarah Mitchell</p>
+                          <p className="text-xs text-gray-500">sarah.mitchell@email.com</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="py-2">
+                     
+                      <button 
+                        onClick={() => {
+                          setShowProfileMenu(false);
+                          navigate('/');
+                        }}
+                        className="w-full text-left px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors cursor-pointer flex items-center"
+                      >
+                        <i className="ri-logout-box-line mr-3 text-red-600 w-5 h-5 flex items-center justify-center"></i>
+                        Logout
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+           
           </div>
         </div>
       </nav>
